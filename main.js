@@ -1,56 +1,52 @@
-const stop = document.getElementById("stop")
-const start = document.getElementById("start")
+const stop = document.getElementById("stop");
+const start = document.getElementById("start");
+
+let mediaStream;
 
 async function startRecording() {
-    start.disabled = true
+    start.disabled = true;
     try {
-        const media = await navigator.mediaDevices.getDisplayMedia({
-            video: { frameRate: { ideal: 60 } }
+        mediaStream = await navigator.mediaDevices.getDisplayMedia({
+            video: { frameRate: { ideal: 60 } },
+            audio: true
         });
 
         const anchoVideo = screen.innerWidth;
         const altoVideo = screen.innerHeight;
 
-        // Obtener la pista de video y aplicar restricciones de resolución
-        const videoTrack = media.getVideoTracks()[0];
+        const videoTrack = mediaStream.getVideoTracks()[0];
         const constraints = {
-            width: { ideal: anchoVideo },  // Ajusta según sea necesario
-            height: { ideal: altoVideo }  // Ajusta según sea necesario
+            width: { ideal: anchoVideo },
+            height: { ideal: altoVideo }
         };
         videoTrack.applyConstraints(constraints);
 
-        // Configuración de MediaRecorder
-        const mediarecorder = new MediaRecorder(media, {
+        const mediarecorder = new MediaRecorder(mediaStream, {
             mimeType: "video/webm;codecs=h264,opus",
             bitsPerSecond: 10000000
         });
 
-        // Iniciar la grabación
         mediarecorder.start();
 
-        // Manejar eventos de parada
         const stopRecording = () => {
-            videoTrack.stop();
             mediarecorder.stop();
-            start.disabled = false
+            mediaStream.getTracks().forEach(track => track.stop());
+            start.disabled = false;
         };
 
         stop.addEventListener("click", stopRecording);
-        stop.addEventListener("touchstart", stopRecording);
-        videoTrack.addEventListener("ended", stopRecording);
-
-        // Manejar eventos de datos disponibles
         mediarecorder.addEventListener("dataavailable", (e) => {
             const link = document.createElement("a");
             link.href = URL.createObjectURL(e.data);
             link.download = "captura.webm";
             link.click();
         });
-    }
-    catch (err) {
-        alert("Tu dispositivo no es compatible... Escribe a soporte para más información")
-        start.disabled = false
+    } catch (err) {
+        if (err != "NotAllowedError: Permission denied") {
+            alert("Tu dispositivo no es compatible 😔")
+        }
+        start.disabled = false;
     }
 }
 
-start.addEventListener("click", startRecording)
+start.addEventListener("click", startRecording);
