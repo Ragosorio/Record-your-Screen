@@ -8,8 +8,8 @@ async function startRecording() {
             video: { frameRate: { ideal: 60 } }
         });
 
-        const anchoVideo = screen.innerWidth;
-        const altoVideo = screen.innerHeight;
+        const anchoVideo = window.innerWidth;
+        const altoVideo = window.innerHeight;
 
         // Obtener la pista de video y aplicar restricciones de resolución
         const videoTrack = media.getVideoTracks()[0];
@@ -48,7 +48,8 @@ async function startRecording() {
         });
     }
     catch (err) {
-        console.err("ERROR DEL PROGRAMA: ", err)
+        console.error("ERROR DEL PROGRAMA: ", err)
+        start.disabled = false
     }
 }
 
