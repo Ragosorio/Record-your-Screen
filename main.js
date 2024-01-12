@@ -48,11 +48,9 @@ async function startRecording() {
         });
     }
     catch (err) {
-        console.error("ERROR DEL PROGRAMA: ", err)
-        alert(err)
+        alert("Tu dispositivo no es compatible... Escribe a soporte para más información")
         start.disabled = false
     }
 }
 
 start.addEventListener("click", startRecording)
-start.addEventListener("touchstart", startRecording)
