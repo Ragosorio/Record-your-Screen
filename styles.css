@@ -1,0 +1,164 @@
+@import url(https://unpkg.com/css-peeps@1/css-peeps.compat.css);
+* {
+  box-sizing: border-box; /* Asegurar que el modelo de caja sea consistente */
+}
+body {
+  background: #000;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 1500px;
+  max-width: 100vw;
+  min-height: 690px;
+  max-height: 100vh;
+  overflow: hidden;
+}
+h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 100px;
+  margin-bottom: 10px;
+  color: #ffffffdf;
+}
+h2 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  color: #ffffffdf;
+  margin-bottom: 50px;
+}
+.start {
+  font-family: "Courier New", Courier, monospace;
+  border: #000;
+  width: 200px;
+  height: 200px;
+  font-size: 30px;
+  border-radius: 50%;
+  background: #94e978d2;
+  color: aliceblue;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.start:hover {
+  background: rgb(1, 139, 1);
+}
+.stop {
+  font-family: "Courier New", Courier, monospace;
+  border: #000;
+  width: 200px;
+  font-size: 30px;
+  height: 200px;
+  border-radius: 50%;
+  background: #f26969;
+  color: aliceblue;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.stop:hover {
+  background: rgb(255, 0, 0);
+}
+small {
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  font-size: 12px;
+  position: absolute;
+  bottom: 5px;
+}
+.css-peeps {
+  --peep-hat-color: #cbeebf;
+  --peep-hair-color: #000;
+  --peep-skin-color: #ffffff;
+  --peep-accessory-color: #00ff00;
+  --peep-facial-hair-color: #f604049e;
+  --peep-object-color: #f604049e;
+  --peep-clothes-color: #f604049e;
+
+  --peep-body-offset-x: -1px;
+
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 387px;
+  height: 405px;
+  margin: 0;
+}
+.css-peeps-2 {
+  --peep-hat-color: #000000;
+  --peep-hair-color: #f26969;
+  --peep-skin-color: #ffffff;
+  --peep-accessory-color: #e6eae6;
+  --peep-facial-hair-color: #ffd700;
+  --peep-object-color: #ffa500;
+  --peep-clothes-color: #cbeebf;
+
+  --peep-flipped: 1;
+
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 387px;
+  height: 405px;
+  margin: 0;
+}
+.css-peeps-3 {
+  position: none;
+}
+
+@media screen and (max-width: 1100px) {
+  .container {
+    min-height: 98vh;
+    min-width: 100vw;
+    max-width: 500px;
+    overflow: hidden;
+  }
+  h1 {
+    font-size: 70px;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-size: 15px;
+    margin-bottom: 200px;
+  }
+  .start {
+    width: 150px;
+    height: 150px;
+    font-size: 30px;
+    margin-right: 10px;
+  }
+  .stop {
+    width: 150px;
+    font-size: 30px;
+    height: 150px;
+    margin-left: 10px;
+  }
+  .css-peeps {
+    display: none;
+  }
+  .css-peeps-2 {
+    display: none;
+  }
+  .css-peeps-3 {
+    --peep-hat-color: #cbeebf;
+    --peep-hair-color: #7300e6;
+    --peep-skin-color: #ffffff;
+    --peep-accessory-color: #00ff00;
+    --peep-facial-hair-color: #f26969;
+    --peep-object-color: #ffa500;
+    --peep-clothes-color: #f26969;
+
+    --peep-body-offset-x: -5px;
+    --peep-body-offset-y: 7.384735107421875px;
+
+    position: absolute;
+    left: auto;
+    right: auto;
+    bottom: 0px;
+    width: 357px;
+    height: 385px;
+    margin: 0;
+  }
+  small {
+    top: 50px;
+  }
+}
