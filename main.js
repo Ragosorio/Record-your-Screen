@@ -1,18 +1,21 @@
 const stop = document.getElementById("stop")
 const start = document.getElementById("start")
 
-start.addEventListener("click", async () => {
+async function startRecording() {
     start.disabled = true
     try {
         const media = await navigator.mediaDevices.getDisplayMedia({
             video: { frameRate: { ideal: 60 } }
         });
 
+        const anchoVideo = screen.innerWidth;
+        const altoVideo = screen.innerHeight;
+
         // Obtener la pista de video y aplicar restricciones de resolución
         const videoTrack = media.getVideoTracks()[0];
         const constraints = {
-            width: { ideal: 1920 },  // Ajusta según sea necesario
-            height: { ideal: 1080 }  // Ajusta según sea necesario
+            width: { ideal: anchoVideo },  // Ajusta según sea necesario
+            height: { ideal: altoVideo }  // Ajusta según sea necesario
         };
         videoTrack.applyConstraints(constraints);
 
@@ -33,6 +36,7 @@ start.addEventListener("click", async () => {
         };
 
         stop.addEventListener("click", stopRecording);
+        stop.addEventListener("touchstart", stopRecording);
         videoTrack.addEventListener("ended", stopRecording);
 
         // Manejar eventos de datos disponibles
@@ -46,4 +50,7 @@ start.addEventListener("click", async () => {
     catch (err) {
         console.err("ERROR DEL PROGRAMA: ", err)
     }
-})
+}
+
+start.addEventListener("click", startRecording)
+start.addEventListener("touchstart", startRecording)
