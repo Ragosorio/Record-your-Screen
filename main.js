@@ -8,8 +8,8 @@ async function startRecording() {
             video: { frameRate: { ideal: 60 } }
         });
 
-        const anchoVideo = window.innerWidth;
-        const altoVideo = window.innerHeight;
+        const anchoVideo = screen.innerWidth;
+        const altoVideo = screen.innerHeight;
 
         // Obtener la pista de video y aplicar restricciones de resolución
         const videoTrack = media.getVideoTracks()[0];
@@ -49,9 +49,10 @@ async function startRecording() {
     }
     catch (err) {
         console.error("ERROR DEL PROGRAMA: ", err)
+        alert(err)
         start.disabled = false
     }
 }
 
 start.addEventListener("click", startRecording)
-start.addEventListener("touchstart", () => alert("mobile"))
+start.addEventListener("touchstart", startRecording)
