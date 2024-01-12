@@ -54,4 +54,4 @@ async function startRecording() {
 }
 
 start.addEventListener("click", startRecording)
-start.addEventListener("touchstart", startRecording)
+start.addEventListener("touchstart", () => alert("mobile"))
